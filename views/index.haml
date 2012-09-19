@@ -1,0 +1,35 @@
+!!! 5
+
+%html
+  %head
+    %title Decent Exposure
+    %link(rel="stylesheet" href="/stylesheets/application.css")
+    /%link(rel='icon' type='image/png' href='/favicon.png')
+    /[if IE]
+      %script(type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
+    :javascript
+      try{Typekit.load();}catch(e){}
+    %meta(name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0")
+  %body
+    %header
+      %h1
+        %a(href="/") Decent Exposure
+      .wrapper
+        %h2
+          a Ruby gem
+          %br/
+          for cleaner controllers
+        %p
+          %a(href="https://github.com/voxdolo/decent_exposure/wiki") read the wiki &rarr;
+          %a(href="https://github.com/voxdolo/decent_exposure") fork me on Github &rarr;
+    %nav
+      %ul{:class => @page ? "active" : ""}
+        - ["overview", "usage", "advanced_usage", "contributing"].each do |li|
+          %li{:class => @page == li ? "active" : ""}
+            %a{:href => "/pages/#{li}"}= li.gsub("_", " ").capitalize
+    - if @content
+      %article#main= @content
+    %footer
+      :markdown
+        developed and maintained by [@voxdolo](http://twitter.com/voxdolo)  
+        design by [@camerondaigle](http://twitter.com/camerondaigle) for [@hashrocket](http://twitter.com/hashrocket)

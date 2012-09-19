@@ -1,0 +1,169 @@
+@import 'reset.scss'
+
+= transition-property($val)
+  -webkit-transition-property: $val
+  -moz-transition-property: $val
+= transition-duration($val)
+  -webkit-transition-duration: $val
+  -moz-transition-duration: $val
+= max-width($width)
+  @media screen and (max-width: #{$width}px)
+    @content
+= retina
+  @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-device-pixel-ratio: 2)
+    @content
+
+body
+  font-family: "Helvetica Neue", Helvetica, sans-serif
+  color: #222
+
+a
+  +transition-property(color)
+  +transition-duration(100ms)
+
+header
+  font-weight: bold
+  a
+    text-decoration: none
+  h1
+    letter-spacing: -2px
+    background: #df002a
+    a
+      display: block
+      color: #fff
+      width: 340px
+      margin: 0 auto
+      padding: 40px 20px 10px 20px
+      line-height: 100%
+      font-size: 70px
+      position: relative
+      +max-width(480)
+        font-size: 60px
+        padding-top: 20px
+        width: auto
+      &::before
+        content: ''
+        display: block
+        width: 263px
+        height: 37px
+        position: absolute
+        left: -260px
+        bottom: 90px
+        background: url("/images/header.png")
+        +max-width(1040)
+          left: auto
+          bottom: auto
+          position: relative
+          margin: 0 0 10px 5px
+        +retina
+          background: url("/images/header@2x.png")
+          background-size: 100%
+  .wrapper
+    max-width: 1220px
+    padding: 0 40px
+    margin: 0 auto
+    position: relative
+    +max-width(480)
+      padding: 0 20px
+    h2
+      width: 340px
+      margin: 0 auto
+      padding: 20px 0 10px 0
+      font-size: 24px
+      line-height: 30px
+      +max-width(480)
+        width: auto
+    p
+      position: absolute
+      bottom: 13px
+      right: 40px
+      text-align: right
+      +max-width(1040)
+        position: relative
+        bottom: auto
+        right: auto
+        width: 340px
+        margin: 0 auto 10px auto
+        text-align: left
+      +max-width(480)
+        width: auto
+      a
+        display: block
+        color: inherit
+        &:hover
+          color: #df002a
+
+nav
+  font-weight: bold
+  margin: 0 auto
+  max-width: 1300px
+  ul
+    padding: 20px 0 10px 0
+    margin: 0 20px
+    border-bottom: 4px solid #222
+    border-top: 4px solid #222
+    +max-width(480)
+      margin: 0 10px
+    &.active
+      li
+        a
+          color: #999
+    li
+      width: 340px
+      margin: 0 auto
+      +max-width(480)
+        width: auto
+      a
+        font-size: 40px
+        line-height: 45px
+        color: #222
+        display: block
+        +max-width(480)
+          font-size: 24px
+          padding: 0 10px
+          line-height: 30px
+      &.active a,
+      a:hover
+        color: #df002a
+
+article#main
+  margin: 0 auto
+  max-width: 1180px
+  padding: 40px 60px
+  font-size: 18px
+  line-height: 170%
+  +max-width(480)
+    padding: 20px
+  h1, h2, p, ul, ol
+    margin: 0 0 30px 0
+  h1
+    font-size: 24px
+  p
+    margin: 0 0 30px 0
+  + footer
+    margin-top: 0
+    +max-width(480)
+      margin: 0 10px
+    p
+      border-top: 4px solid #222
+
+footer
+  max-width: 1300px
+  margin: 100px auto 0 auto
+  text-align: right
+  +max-width(480)
+    margin-top: 0
+    text-align: left
+  p
+    font-weight: bold
+    font-size: 11px
+    padding: 0 0 20px 0
+    margin: 0 20px
+    padding: 10px
+    color: #777
+    +max-width(480)
+      margin: 0
+    a
+      color: #222
+      &:hover
+        color: #df002a
