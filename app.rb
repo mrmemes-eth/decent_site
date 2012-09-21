@@ -12,11 +12,13 @@ get '/stylesheets/*.css' do |f|
 end
 
 get '/pages/:page' do
-  @page = request.url.split("/").last
-  @content = markdown(:"pages/#{params[:page]}")
+  @page = params[:page]
+  @content = markdown(:"pages/#{@page}")
   haml :index
 end
 
 get '/' do
+  @page = 'overview'
+  @content = markdown(:"pages/#{@page}")
   haml :index
 end
