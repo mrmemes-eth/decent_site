@@ -12,6 +12,9 @@ test/tmp
 test/version_tmp
 tmp
 
+# SASS artifacts
+.sass-cache
+
 # YARD artifacts
 .yardoc
 _yardoc
