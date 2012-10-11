@@ -1,24 +1,16 @@
-require 'sinatra'
-require 'haml'
-
-require "sinatra/reloader" if development?
-
 before do
   response.headers['Cache-Control'] = 'public, max-age=604800' if production?
 end
 
-get '/stylesheets/*.css' do |f|
-  sass ('/stylesheets/' + f).to_sym
-end
-
-get '/pages/:page' do
-  @page = params[:page]
-  @content = markdown(:"pages/#{@page}")
-  haml :index
+get '/stylesheets/*.css' do |file_name|
+  STDOUT.puts file_name.to_sym
+  sass(file_name.to_sym)
 end
 
 get '/' do
-  @page = 'overview'
-  @content = markdown(:"pages/#{@page}")
-  haml :index
+  haml(:index)
+end
+
+get '/:page' do
+  haml(params[:page])
 end
