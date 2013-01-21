@@ -7,6 +7,5 @@ gem 'sinatra'
 gem 'rdiscount'
 
 group :development do
-  gem 'heroku'
   gem 'sinatra-reloader'
 end
