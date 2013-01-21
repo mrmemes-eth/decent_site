@@ -3,14 +3,13 @@ before do
 end
 
 get '/stylesheets/*.css' do |file_name|
-  STDOUT.puts file_name.to_sym
   sass(file_name.to_sym)
 end
 
 get '/' do
-  haml(:index)
+  markdown(:overview, layout: :layout, layout_engine: :haml)
 end
 
 get '/:page' do
-  haml(params[:page])
+  markdown(params[:page].to_sym, layout: :layout, layout_engine: :haml)
 end
