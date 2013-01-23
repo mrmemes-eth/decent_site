@@ -25,13 +25,13 @@
     %nav
       %ul
         %li.overview
-          %a{href: "/"} Overview
+          %a{href: root_path, class: active_class_for(root_path)} Overview
         %li.usage
-          %a{href: '/usage'} Usage
+          %a{href: usage_path, class: active_class_for(usage_path)} Usage
         %li.advanced_usage
-          %a{href: '/advanced'} Advanced Usage
+          %a{href: advanced_usage_path, class: active_class_for(advanced_usage_path)} Advanced Usage
         %li.contributing
-          %a{href: '/contributing'} Contributing
+          %a{href: contributing_path, class: active_class_for(contributing_path)} Contributing
     %article#main= yield
     %footer
       :markdown
