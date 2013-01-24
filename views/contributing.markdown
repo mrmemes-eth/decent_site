@@ -46,7 +46,7 @@ found a weird interaction with another library, or want to share a wiz-bang
 strategy you made or found, this is the place to do it.
 
 If you'd like to add `RDoc`, that'd be a wonderful contribution and I would be
-happy to (re)name my dog after you. She's older, but seems respond well enough
+happy to (re)name my dog after you. She's older, but seems to respond well enough
 when I call her odd names, so she'll probably take it in stride.
 
 If you see typos, code errors, errors of omission or anything else that is
