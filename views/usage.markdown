@@ -80,7 +80,7 @@ Here's a list of valid options you can pass as the second argument to
   <dt><code>:params</code><dt>
   <dd>Symbolized name of the method to call on the controller to get a
   <code>params</code> hash</dd>
-  <dt><code>:finder</code></dd>
+  <dt><code>:finder</code></dt>
   <dd>Symbolized name of the method used to find the record</dd>
   <dt><code>:finder_parameter</code></dd>
   <dd>Symbolized name of the <code>params</code> attribute containing the
