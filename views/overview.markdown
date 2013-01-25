@@ -33,7 +33,7 @@ Rails loves conventions. So does `decent_exposure`! By following a few simple
 conventions, you can have `decent_exposure` automate many repetitive tasks
 controllers ask you to perform.
 
-If you're using the default _strategies_ (more on that later),
+If you're using the default _strategies_ ([more on that later](/advanced)),
 `decent_exposure` assumes `ActiveRecord` is in play and that you want
 your object's attributes to be automatically updated when creating or updating
 a resource (a _resource_ here, is _an instance of an `ActiveRecord` object_).
