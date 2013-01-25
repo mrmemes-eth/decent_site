@@ -26,7 +26,7 @@ header
   a
     text-decoration: none
   h1
-    letter-spacing: -2px
+    letter-spacing: -1px
     background: #df002a
     a
       display: block
@@ -63,21 +63,22 @@ header
     padding: 0 40px
     margin: 0 auto
     position: relative
+    line-height: 18px
     +max-width(480)
       padding: 0 20px
     h2
       width: 340px
       margin: 0 auto
-      padding: 20px 0 10px 0
-      font-size: 24px
-      line-height: 30px
+      padding: 10px 0
+      font-size: 18px
       +max-width(480)
         width: auto
     p
       position: absolute
-      bottom: 13px
+      bottom: 9px
       right: 40px
       text-align: right
+      font-size: 14px
       +max-width(1040)
         position: relative
         bottom: auto
@@ -98,49 +99,54 @@ nav
   margin: 0 auto
   max-width: 1300px
   ul
-    padding: 20px 0 10px 0
+    padding: 10px 0
     margin: 0 20px
     border-bottom: 4px solid #222
     border-top: 4px solid #222
     +max-width(480)
       margin: 0 10px 20px 10px
-    &.active
+    &:hover
       li
         a
-          color: #999
+          color: #666
     li
       width: 340px
       margin: 0 auto
       +max-width(480)
         width: auto
       a
-        font-size: 40px
-        line-height: 45px
+        font-size: 24px
+        line-height: 30px
         color: #222
         display: block
         +max-width(480)
           font-size: 24px
           padding: 0 10px
           line-height: 30px
-      a.active
-        color: #b20022
+      a.active,
       a:hover
         color: #df002a
 
 article#main
   margin: 0 auto
   max-width: 1180px
-  padding: 40px 60px
+  padding: 40px 100px
   font-size: 16px
   line-height: 170%
+  +max-width(1040)
+    padding: 40px 60px
   +max-width(480)
     padding: 20px
   h1, h2, p, ul, ol
-    margin: 0 0 30px 0
+    margin: 0 0 20px 0
+  h1, h2, h3
+    padding-top: 10px
   h1
     font-size: 24px
-  p
-    margin: 0 0 30px 0
+  p, h3
+    margin: 0 20px 20px 20px
+    +max-width(480)
+      margin: 0 0 20px 0
   a
     color: #df002a
     &:hover
@@ -167,9 +173,13 @@ article#main
       font-size: 90%
       font-style: italic
   ul
+    padding: 0 60px
+    +max-width(480)
+      padding: 0 30px
     li
-      margin-left: 20px
-      list-style-type: circle
+      list-style-type: square
+      + li
+        margin-top: 5px
 
 footer
   max-width: 1300px
@@ -183,7 +193,7 @@ footer
     font-size: 11px
     padding: 0 0 20px 0
     margin: 0 20px
-    padding: 10px
+    padding: 10px 20px
     color: #777
     +max-width(480)
       margin: 0
