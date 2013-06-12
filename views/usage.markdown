@@ -169,7 +169,7 @@ call in lieu of the standard `ActionController#params` method:
       expose(:people, params: :scrubbed_params)
 
       def scrubbed_params
-        params.slice(:foo,:bar:baz)
+        params.slice(:foo,:bar,:baz)
       end
     end
 
