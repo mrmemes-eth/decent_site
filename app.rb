@@ -38,5 +38,7 @@ get '/ping' do
 end
 
 get '/:page' do
-  markdown(params[:page].to_sym, layout: :layout, layout_engine: :haml)
+  unless params[:page] == 'favicon.ico'
+    markdown(params[:page].to_sym, layout: :layout, layout_engine: :haml)
+  end
 end
