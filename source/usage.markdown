@@ -88,12 +88,10 @@ Here's a list of valid options you can pass as the second argument to
   <code>params</code> hash</dd>
   <dt><code>:finder</code></dt>
   <dd>Symbolized name of the method used to find the record</dd>
-  <dt><code>:finder_parameter</code></dd>
+  <dt><code>:finder_parameter</code></dt>
   <dd>Symbolized name of the <code>params</code> attribute containing the
   <code>finder</code> method's unique identifier</dd>
 </dl>
-
-[helper]: http://goo.gl/wne0F
 
 Next let's look at some potential usage for each of these options:
 
@@ -247,3 +245,4 @@ From here you may want to look into [advanced usage](advanced.html) or maybe loo
 into how to go about [contributing](contributing.html).
 
 [rbac]: http://en.wikipedia.org/wiki/Role-based_access_control
+[helper]: http://goo.gl/wne0F
