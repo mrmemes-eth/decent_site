@@ -33,6 +33,10 @@ get '/' do
   markdown(:overview, layout: :layout, layout_engine: :haml)
 end
 
+get '/ping' do
+  [200,{'Content-Type' => 'text/plain'},['PONG']]
+end
+
 get '/:page' do
   markdown(params[:page].to_sym, layout: :layout, layout_engine: :haml)
 end
