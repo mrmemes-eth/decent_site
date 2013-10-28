@@ -6,22 +6,22 @@
   http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
   <url>
-    <loc>http://www.decentexposure.info/</loc>
+    <loc>http://www.decentexposure.info/index.html</loc>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>http://www.decentexposure.info/usage</loc>
+    <loc>http://www.decentexposure.info/usage.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>http://www.decentexposure.info/advanced</loc>
+    <loc>http://www.decentexposure.info/advanced.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>http://www.decentexposure.info/contributing</loc>
+    <loc>http://www.decentexposure.info/contributing.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.70</priority>
   </url>
