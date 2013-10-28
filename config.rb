@@ -67,7 +67,8 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
-set :markdown_engine, :kramdown
+set :markdown_engine, :rdiscount
+set :markdown, :fenced_code_blocks => true
 
 # Build-specific configuration
 configure :build do

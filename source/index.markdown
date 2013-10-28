@@ -33,7 +33,7 @@ Rails loves conventions. So does `decent_exposure`! By following a few simple
 conventions, you can have `decent_exposure` automate many repetitive tasks
 controllers ask you to perform.
 
-If you're using the default _strategies_ ([more on that later](/advanced)),
+If you're using the default _strategies_ ([more on that later](advanced.html)),
 `decent_exposure` assumes `ActiveRecord` is in play and that you want
 your object's attributes to be automatically updated when creating or updating
 a resource (a _resource_ here, is _an instance of an `ActiveRecord` object_).
@@ -55,7 +55,7 @@ This simple declaration makes a few assumptions about your environment:
   either an `id` key or a `person_id` key.
 
 *Phew* that's a lot of assumptions. Thankfully those are all overridable for
-you control freaks out there (see [advanced usage](/advanced)).
+you control freaks out there (see [advanced usage](advanced.html)).
 
 What following those conventions gets you is an instance of `Person`,
 retrieved from the database and initialized with all of it's values.
@@ -227,13 +227,13 @@ associated `Person` instance from the database.
 
 ## Where to next?
 
-Most folks will probably want to head over and see [usage](/usage) next
+Most folks will probably want to head over and see [usage](usage.html) next
 (though really, we've covered the most basic use examples here).
 
 If you're in need of tuning `decent_exposure` to your environment in a more
 custom manner (Rails apps are complicated beasts!), you should probably check
-out our section on [advanced usage](/advanced).
+out our section on [advanced usage](advanced.html).
 
 If you just need to know how you can contribute to `decent_exposure` (we
 really need a strategy for `mongoid`, *hint* *hint*), pop over to our section
-on [contributing](/contributing).
+on [contributing](contributing.html).

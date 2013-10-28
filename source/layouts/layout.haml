@@ -3,22 +3,11 @@
 %html
   %head
     %title Decent Exposure
-    %link(rel="stylesheet" href="/stylesheets/application.css")
-    %link(rel='icon' type='image/png' href='/images/favicon.png')
+    = stylesheet_link_tag "application"
+    = favicon_tag "images/favicon.png"
     /[if IE]
       %script(type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
-    :javascript
-      try{Typekit.load();}catch(e){}
-    :javascript
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-7742210-8']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
+    = javascript_include_tag "application"
     %meta(name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0")
   %body
     %header
@@ -42,14 +31,7 @@
           %a{href: advanced_usage_path, class: active_class_for(advanced_usage_path)} Advanced Usage
         %li.contributing
           %a{href: contributing_path, class: active_class_for(contributing_path)} Contributing
-    %article#main= yield
+    %main= yield
     %footer
       :markdown
-        developed and maintained by [@voxdolo][vox] and [@joshuadavey][josh]
-        design by [@camerondaigle][cam] for [@hashrocket][hash]
-        [vox]: http://twitter.com/voxdolo
-        [josh]: http://twitter.com/joshuadavey
-        [cam]: http://twitter.com/camerondaigle
-        [hash]: http://twitter.com/hashrocket
-
-
+        developed and maintained by [@voxdolo](http://twitter.com/voxdolo) and [@joshuadavey](http://twitter.com/joshuadavey) design by [@camerondaigle](http://twitter.com/camerondaigle) for [@hashrocket](http://twitter.com/hashrocket)
