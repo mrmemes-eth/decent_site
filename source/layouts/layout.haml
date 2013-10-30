@@ -1,0 +1,37 @@
+!!! 5
+
+%html
+  %head
+    %title Decent Exposure
+    = stylesheet_link_tag "application"
+    = favicon_tag "images/favicon.png"
+    /[if IE]
+      %script(type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js")
+    = javascript_include_tag "application"
+    %meta(name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0")
+  %body
+    %header
+      %h1
+        %a(href="/") Decent Exposure
+      .wrapper
+        %h2
+          a Ruby gem
+          %br/
+          for cleaner controllers
+        %p
+          %a(href="https://github.com/voxdolo/decent_exposure/wiki") read the wiki &rarr;
+          %a(href="https://github.com/voxdolo/decent_exposure") fork me on Github &rarr;
+    %nav
+      %ul
+        %li.overview
+          %a{href: index_path, class: active_class_for(index_path)} Overview
+        %li.usage
+          %a{href: usage_path, class: active_class_for(usage_path)} Usage
+        %li.advanced_usage
+          %a{href: advanced_usage_path, class: active_class_for(advanced_usage_path)} Advanced Usage
+        %li.contributing
+          %a{href: contributing_path, class: active_class_for(contributing_path)} Contributing
+    %main= yield
+    %footer
+      :markdown
+        developed and maintained by [@voxdolo](http://twitter.com/voxdolo) and [@joshuadavey](http://twitter.com/joshuadavey) design by [@camerondaigle](http://twitter.com/camerondaigle) for [@hashrocket](http://twitter.com/hashrocket)

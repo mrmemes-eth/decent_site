@@ -223,7 +223,7 @@ eager-loading. Easy peezy.
 
 ## Other topics
 
-From here you may want to look into [advanced usage](/advanced) or maybe look
-into how to go about [contributing](/contributing).
+From here you may want to look into [advanced usage](advanced.html) or maybe look
+into how to go about [contributing](contributing.html).
 
 [rbac]: http://en.wikipedia.org/wiki/Role-based_access_control
