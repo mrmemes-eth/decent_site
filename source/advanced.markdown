@@ -19,10 +19,12 @@ way to start. We'll assume that you're using [draper](draper) for the sake of
 having a defined interface. A simple integration with draper might look like
 this:
 
-    class PeopleController < ApplicationController
-      expose(:person)
-      expose(:person_presenter) { person.decorate }
-    end
+```ruby
+class PeopleController < ApplicationController
+  expose(:person)
+  expose(:person_presenter) { person.decorate }
+end
+```
 
 And there you have a memoized method that yields a decorated object and makes
 it available to the view.
@@ -59,17 +61,19 @@ a resource from `current_user` is not an option, but you'd like to verify a
 resource's relationship to the `current_user`, you can use a custom strategy
 like the following:
 
-    class VerifiableStrategy < DecentExposure::Strategy
-      delegate :current_user, :to => :controller
+```ruby
+class VerifiableStrategy < DecentExposure::Strategy
+  delegate :current_user, :to => :controller
 
-      def resource
-        instance = model.find(params[:id])
-        if current_user != instance.user
-          raise ActiveRecord::RecordNotFound
-        end
-        instance
-      end
+  def resource
+    instance = model.find(params[:id])
+    if current_user != instance.user
+      raise ActiveRecord::RecordNotFound
     end
+    instance
+  end
+end
+```
 
 You can then use the custom strategy in your controller like so:
 
@@ -88,11 +92,13 @@ controller or controllers inheriting from it (e.g. `ApplicationController`, if
 you need to change the behavior for all your controllers), you can define a
 `decent_configuration` block:
 
-    class ApplicationController < ActionController::Base
-      decent_configuration do
-        strategy MongoidStrategy
-      end
-    end
+```ruby
+class ApplicationController < ActionController::Base
+  decent_configuration do
+    strategy MongoidStrategy
+  end
+end
+```
 
 A `decent_configuration` block without a `:name` argument is considered the
 "default" configuration for that controller (and it's ancestors). All things
@@ -103,16 +109,19 @@ exposure to the `decent_configuration` block.
 If you don't want a specific configuration to affect every exposure in the
 controller, you can give it a name like so:
 
-    class ArticleController < ApplicationController
-      decent_configuration(:sluggable) do
-        finder :find_by_slug
-        finder_parameter :slug
-      end
-    end
+```ruby
+class ArticleController < ApplicationController
+  decent_configuration(:sluggable) do
+    finder :find_by_slug
+    finder_parameter :slug
+  end
+end
+```
 
 And opt into it like so:
 
-    expose(:article, config: :sluggable)
-
+```ruby
+expose(:article, config: :sluggable)
+```
 
 [draper]: https://github.com/drapergem/draper

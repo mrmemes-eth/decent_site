@@ -17,11 +17,15 @@ Installation is super simple:
 
 *In your Gemfile:*
 
-    gem 'decent_exposure'
+```ruby
+gem 'decent_exposure'
+```
 
 *In your console:*
 
-    $ bundle
+```bash
+$ bundle
+```
 
 Really. That's it.
 
@@ -43,9 +47,11 @@ a resource (a _resource_ here, is _an instance of an `ActiveRecord` object_).
 This is the most commonly used convention, as we tend to spend much more time
 interacting with resources than creating them. It looks like this:
 
-    class Controller
-      expose(:person)
-    end
+```ruby
+class Controller
+  expose(:person)
+end
+```
 
 This simple declaration makes a few assumptions about your environment:
 
@@ -67,12 +73,16 @@ how we refer to a call to the `expose` macro):
 
 This assumes you have a route that looks something like this:
 
-    resources :people
+```ruby
+resources :people
+```
 
 In the default configuration `expose(:person)` will define an instance method
 that returns an object found with this query:
 
-    Person.find(42)
+```ruby
+Person.find(42)
+```
 
 Let's say we have a corresponding `Haml` view (because I like `Haml`):
 
@@ -81,13 +91,15 @@ Let's say we have a corresponding `Haml` view (because I like `Haml`):
 In that view, we would refer to the `person` method that the controller has
 made available to us via the call to `expose`:
 
-    %dl
-      %dd Name
-      %dt= person.name
-      %dd Rank
-      %dt= person.rank
-      %dd Serial Number
-      %dd= person.serial_number
+```ruby
+%dl
+  %dd Name
+  %dt= person.name
+  %dd Rank
+  %dt= person.rank
+  %dd Serial Number
+  %dd= person.serial_number
+```
 
 Look at all those instance variables we didn't type! Instance variables aside,
 we've now got a method from the controller who's implementation can change and
@@ -102,9 +114,11 @@ retrieved resource.
 
 For our purposes, we'll assume the same basic controller setup:
 
-    class Controller
-      expose(:person)
-    end
+```ruby
+class Controller
+  expose(:person)
+end
+```
 
 All of the previous assumptions are still true about what `decent_exposure`
 expects out of your application. We start to add some additional behavior
@@ -112,17 +126,19 @@ though, when we detect that you're updating the resource exposed by the
 exposure (namely that your request is being interpreted as a `PUT`). Let's
 assume the following `update` action in our standard Rails controller:
 
-    class Controller
-      expose(:person)
+```ruby
+class Controller
+  expose(:person)
 
-      def update
-        if person.save
-          redirect_to(person)
-        else
-          render :edit
-        end
-      end
+  def update
+    if person.save
+      redirect_to(person)
+    else
+      render :edit
     end
+  end
+end
+```
 
 Here we see the controller's first attempt to consume the interface provided
 by the call to `expose`. That `person` method is available there too. If
@@ -143,7 +159,9 @@ Let's demystify what's happening there by talking about the assumptions
 
 Or, plainly put, it's going to try to do this:
 
-    person.attributes = params[:person]
+```ruby
+person.attributes = params[:person]
+```
 
 Note that `decent_exposure` does not call `save` on that exposed resource.
 That's so you can get and respond to the Boolean value that `#save` called on
@@ -159,15 +177,17 @@ display our errors.
 If you're so inclined, you can make things even more sparse by using Rails'
 `respond_with` method like so:
 
-    class Controller
-      respond_to(:html)
-      expose(:person)
+```ruby
+class Controller
+  respond_to(:html)
+  expose(:person)
 
-      def update
-        person.save
-        respond_with(person)
-      end
-    end
+  def update
+    person.save
+    respond_with(person)
+  end
+end
+```
 
 ## Creating a new resource
 
@@ -175,15 +195,17 @@ With the conventions we've covered above, creating a new resource becomes very
 easy to understand. We'll assume, again, the same basic structure, now with
 more `create` action:
 
-    class Controller
-      respond_to(:html)
-      expose(:person)
+```ruby
+class Controller
+  respond_to(:html)
+  expose(:person)
 
-      def create
-        person.save
-        respond_with(person)
-      end
+  def create
+      person.save
+      respond_with(person)
     end
+  end
+```
 
 Again, `decent_exposure` behaves a bit differently when you're creating a
 resource (and again we detect the `HTTP` verb, in this case `POST`). Here are
@@ -201,20 +223,22 @@ views.
 
 Here's what a typical `decent_exposure` controller might look like:
 
-    class Controller
-      respond_to(:html)
-      expose(:person)
+```ruby
+class Controller
+  respond_to(:html)
+  expose(:person)
 
-      def create
-        person.save
-        respond_with(person)
-      end
+def create
+  person.save
+  respond_with(person)
+end
 
-      def update
-        person.save
-        respond_with(person)
-      end
-    end
+def update
+    person.save
+    respond_with(person)
+  end
+end
+```
 
 You might note the absence of the `new` and `edit` methods. The short story
 is: you don't need them. Most people only include those methods to set up

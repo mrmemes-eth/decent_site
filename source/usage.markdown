@@ -5,17 +5,21 @@ components in your Rails app:
 
 **Models**
 
-    class Company < ActiveRecord::Base
-      has_many :people
-    end
+```ruby
+class Company < ActiveRecord::Base
+  has_many :people
+end
 
-    class Person < ActiveRecord::Base; end
+class Person < ActiveRecord::Base; end
+```
 
 **Routes**
 
-    resources :companies do
-      resources :people
-    end
+```ruby
+resources :companies do
+  resources :people
+end
+```
 
 And let us further suppose that we're going to be doing some work with people
 scoped under companies. With that as our set-up, let's look into the
@@ -30,31 +34,33 @@ this first.
 
 Consider the following controller:
 
-    class PeopleController < ApplicationController
+```ruby
+class PeopleController < ApplicationController
 
-      expose(:person)
+  expose(:person)
 
-      def create
-        if person.save
-          redirect_to(people_path)
-        else
-          render :edit
-        end
-      end
-
-      def update
-        if person.save
-          redirect_to(person)
-        else
-          render :edit
-        end
-      end
-
-      def destroy
-        person.destroy && redirect_to(people_path)
-      end
-
+  def create
+    if person.save
+      redirect_to(people_path)
+    else
+      render :edit
     end
+  end
+
+  def update
+    if person.save
+      redirect_to(person)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    person.destroy && redirect_to(people_path)
+  end
+
+end
+```
 
 If what we need is a full lifecycle of CRUD operations for our controller, then
 that's all the code we need to do it.
@@ -100,37 +106,41 @@ Looking back at our example models, we note that a `Company` `has_many`
 `people`. In order to represent this in our controller, we would previously
 have written something like this:
 
-    class PeopleController < ApplicationController
+```ruby
+class PeopleController < ApplicationController
 
-      def update
-        @company = Company.find(params[:company_id])
-        @person = @company.people.find(params[:id])
-        if @person.save
-          redirect_to(people_path)
-        else
-          render :edit
-        end
-      end
-
+  def update
+    @company = Company.find(params[:company_id])
+    @person = @company.people.find(params[:id])
+    if @person.save
+      redirect_to(people_path)
+    else
+      render :edit
     end
+  end
+
+end
+```
 
 With `decent_exposure` we approach that in a declarative fashion, like so:
 
 
-    class PeopleController < ApplicationController
+```ruby
+class PeopleController < ApplicationController
 
-      expose(:company)
-      expose(:people, ancestor: :company)
+  expose(:company)
+  expose(:people, ancestor: :company)
 
-      def update
-        if person.save
-          redirect_to(people_path)
-        else
-          render :edit
-        end
-      end
-
+  def update
+    if person.save
+      redirect_to(people_path)
+    else
+      render :edit
     end
+  end
+
+end
+```
 
 The scoping of the resource to it's parent (widely considered a best practice)
 is handled for you, so long as you specify the `:ancestor`.
@@ -144,13 +154,15 @@ a need to see a `Person` in both a public and private fashion. We may want to
 signify that by changing the name of our interface method depending on the
 situation:
 
-    class PeopleController < ApplicationController
-      expose(:person)
-    end
+```ruby
+class PeopleController < ApplicationController
+  expose(:person)
+end
 
-    class EmployeesController < ApplicationController
-      expose(:employee, model: :person)
-    end
+class EmployeesController < ApplicationController
+  expose(:employee, model: :person)
+end
+```
 
 Naming is both important and hard, so there's no sense in `decent_exposure`
 handicapping your interactions with your object system... Call a duck a duck
@@ -165,13 +177,15 @@ this bit of configuration.
 The `:params` option lets you specify the name of a method, as a symbol to
 call in lieu of the standard `ActionController#params` method:
 
-    class PeopleController < ApplicationController
-      expose(:people, params: :scrubbed_params)
+```ruby
+class PeopleController < ApplicationController
+  expose(:people, params: :scrubbed_params)
 
-      def scrubbed_params
-        params.slice(:foo,:bar,:baz)
-      end
-    end
+  def scrubbed_params
+    params.slice(:foo,:bar,:baz)
+  end
+end
+```
 
 The behavior of an exposure specifying it's `:params` method is otherwise
 unchanged.
@@ -184,7 +198,9 @@ model to "find" the referenced resource.
 
 Let's assume the following route:
 
-    get 'people/:slug' => 'people#show'
+```ruby
+get 'people/:slug' => 'people#show'
+```
 
 This means our faithful `params[:id]` isn't going to work, but only at the
 expense of having a more descriptive name, because apparently we're going to
@@ -195,9 +211,11 @@ using `Person.find(params[:slug])` anymore either, as a `slug` is not an `id`.
 
 `decent_exposure` answers this problem like so:
 
-    class PeopleController < ApplicationController
-      expose(:people, finder: :find_by_slug, finder_parameter: :slug)
-    end
+```ruby
+class PeopleController < ApplicationController
+  expose(:people, finder: :find_by_slug, finder_parameter: :slug)
+end
+```
 
 Where convention isn't what we need or want, we opt for configuration.
 
@@ -214,9 +232,11 @@ underlying query. We often need this sort of thing when our friend
 When you find yourself in need this behavior, just fire off a round: bang!
 bang! like so:
 
-    class PeopleController < ApplicationController
-      expose!(:people)
-    end
+```ruby
+class PeopleController < ApplicationController
+  expose!(:people)
+end
+```
 
 The method signature is the same, just add a `!` and you opt into
 eager-loading. Easy peezy.
