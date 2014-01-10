@@ -77,7 +77,9 @@ end
 
 You can then use the custom strategy in your controller like so:
 
-    expose(:post, strategy: VerifiableStrategy)
+```ruby
+expose(:post, strategy: VerifiableStrategy)
+```
 
 When subclassing DecentExposure::Strategy, the API only requires that you
 define `resource`, but provides helpers to access some common things (e.g. the
