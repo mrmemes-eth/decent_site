@@ -201,10 +201,10 @@ class Controller
   expose(:person)
 
   def create
-      person.save
-      respond_with(person)
-    end
+    person.save
+    respond_with(person)
   end
+end
 ```
 
 Again, `decent_exposure` behaves a bit differently when you're creating a
@@ -228,12 +228,12 @@ class Controller
   respond_to(:html)
   expose(:person)
 
-def create
-  person.save
-  respond_with(person)
-end
+  def create
+    person.save
+    respond_with(person)
+  end
 
-def update
+  def update
     person.save
     respond_with(person)
   end
